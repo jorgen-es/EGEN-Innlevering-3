@@ -28,25 +28,50 @@ public class Blogg {
 	
 	public int finnInnlegg(Innlegg innlegg) {
 
+		for(int i = 0; i < nesteledig; i++) {
 
+			if (innleggtabell[i].erLik(innlegg)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	public boolean finnes(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
+
+		if(finnInnlegg(innlegg)!= -1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
 
+		if (nesteledig < innleggtabell.length) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean leggTil(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		if (ledigPlass() && !finnes(innlegg)) {
+			innleggtabell[nesteledig] = innlegg;
+			nesteledig++;
+			return true;
+		}
+		return false;
 	}
 	
 	public String toString() {
-		throw new UnsupportedOperationException(TODO.method());
+
+		String tekst = getAntall() + "\n";
+
+		for(int i = 0; i < getAntall(); i++) {
+			tekst += innleggtabell[i].toString();
+		} return tekst;
 	}
 
 	// valgfrie oppgaver nedenfor
